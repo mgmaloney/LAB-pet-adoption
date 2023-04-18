@@ -277,10 +277,10 @@ const targetingApp = document.querySelector("#app");
 let domString = "";
 
 for (const pet of pets) {
-  domString += `<div class="card" style="width: 18rem;">
+  domString += `<div class="card text-center" style="width: 18rem;">
+  <h5 class="card-header">${pet.name}</h5>
   <img class="card-img-top" src="${pet.imageUrl}" alt="Card image cap">
   <div class="card-body">
-    <h5> ${pet.name}</h5>
     <p class="card-text">Color: ${pet.color}</p>
     <p class="card-text">Special Skill: ${pet.specialSkill}</p>
     <p class="card-text">Type: ${pet.type}</p>
