@@ -16,3 +16,26 @@ body {
 .card {
   margin: 10px;
 }
+
+.card-footer {
+  margin-bottom: 0px;
+}
+
+.card-img-top {
+  border-radius: 0%;
+}
+
+.Cat-footer {
+  background-color: #d9edf7;
+  color: #1765c0;
+}
+
+.Dog-footer {
+  background-color: #d5ffb0;
+  color: #509b51;
+}
+
+.Dino-footer {
+  background-color: #fffab0;
+  color: #feb850;
+}

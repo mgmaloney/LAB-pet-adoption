@@ -277,17 +277,17 @@ const targetingApp = document.querySelector("#app");
 let domString = "";
 
 for (const pet of pets) {
-  domString += `<div class="card text-center" style="width: 18rem;">
+  pet.type = pet.type.replace(pet.type[0], pet.type[0].toUpperCase());
+  console.log(pet.type);
+  domString += `<div id='${pet.id} class="card text-center" style="width: 18rem;">
   <h5 class="card-header">${pet.name}</h5>
   <img class="card-img-top" src="${pet.imageUrl}" alt="Card image cap">
   <div class="card-body">
     <p class="card-text">Color: ${pet.color}</p>
     <p class="card-text">Special Skill: ${pet.specialSkill}</p>
-    <p class="card-text">Type: ${pet.type}</p>
   </div>
+  <h5 class="card-footer ${pet.type}-footer">${pet.type}</h5>
 </div>`;
 }
-
-console.log(domString);
 
 targetingApp.innerHTML = domString;
