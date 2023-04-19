@@ -39,3 +39,46 @@ body {
   background-color: #fffab0;
   color: #feb850;
 }
+
+.filters button {
+  margin: 30px 30px 10px 30px;
+  padding: 2px 15px;
+}
+
+#cat-button {
+  border: solid transparent 1px;
+  border-radius: 10%;
+  background-color: #5ac0de;
+  color: white;
+}
+
+#dog-button {
+  border: solid transparent 1px;
+  border-radius: 10%;
+  background-color: #5bb85c;
+  color: white;
+}
+
+#dino-button {
+  border: solid transparent 1px;
+  border-radius: 10%;
+  background-color: #f0ae4e;
+  color: white;
+}
+
+#all-button {
+  border: solid transparent 1px;
+  border-radius: 10%;
+  background: linear-gradient(
+    45deg,
+    red,
+    orange,
+    yellow,
+    green,
+    blue,
+    indigo,
+    violet,
+    red
+  );
+  color: white;
+}

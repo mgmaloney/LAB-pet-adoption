@@ -274,20 +274,65 @@ const pets = [
 
 const targetingApp = document.querySelector("#app");
 
-let domString = "";
+const renderToDom = (divId, htmlToRender) => {
+  let selectedDiv = document.getElementById(`${divId}`);
+  selectedDiv.innerHTML = htmlToRender;
+};
 
 for (const pet of pets) {
   pet.type = pet.type.replace(pet.type[0], pet.type[0].toUpperCase());
-  console.log(pet.type);
-  domString += `<div id='${pet.id} class="card text-center" style="width: 18rem;">
-  <h5 class="card-header">${pet.name}</h5>
-  <img class="card-img-top" src="${pet.imageUrl}" alt="Card image cap">
-  <div class="card-body">
-    <p class="card-text">Color: ${pet.color}</p>
-    <p class="card-text">Special Skill: ${pet.specialSkill}</p>
-  </div>
-  <h5 class="card-footer ${pet.type}-footer">${pet.type}</h5>
-</div>`;
 }
 
-targetingApp.innerHTML = domString;
+const cardsOnDom = (petArr) => {
+  let domString = "";
+  for (const pet of petArr) {
+    domString += `<div id='${pet.id} class="card text-center" style="width: 18rem;">
+    <h5 class="card-header">${pet.name}</h5>
+    <img class="card-img-top" src="${pet.imageUrl}" alt="Card image cap">
+    <div class="card-body">
+      <p class="card-text">Color: ${pet.color}</p>
+      <p class="card-text">Special Skill: ${pet.specialSkill}</p>
+    </div>
+    <h5 class="card-footer ${pet.type}-footer">${pet.type}</h5>
+  </div>`;
+  }
+  renderToDom("app", domString);
+};
+
+cardsOnDom(pets);
+
+const filter = (petArr, petType) => {
+  matchingPets = [];
+  for (const pet of petArr) {
+    if (pet.type === petType) {
+      matchingPets.push(pet);
+      console.log(pet);
+    }
+  }
+  console.log(matchingPets);
+  return matchingPets;
+};
+
+catButton = document.getElementById("cat-button");
+dogButton = document.getElementById("dog-button");
+dinoButton = document.getElementById("dino-button");
+showAllButton = document.getElementById("all-button");
+
+catButton.addEventListener("click", () => {
+  const cats = filter(pets, "Cat");
+  cardsOnDom(cats);
+});
+
+dogButton.addEventListener("click", () => {
+  const dogs = filter(pets, "Dog");
+  cardsOnDom(dogs);
+});
+
+dinoButton.addEventListener("click", () => {
+  const dinos = filter(pets, "Dino");
+  cardsOnDom(dinos);
+});
+
+showAllButton.addEventListener("click", () => {
+  cardsOnDom(pets);
+});
