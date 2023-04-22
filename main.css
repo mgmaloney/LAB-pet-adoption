@@ -13,8 +13,19 @@ body {
   flex-flow: row wrap;
 }
 
+.pet-form {
+  display: flex;
+  flex-direction: column;
+}
+
 .card {
   margin: 10px;
+}
+
+input {
+  margin: 5px;
+  width: 500px;
+  border: 2px solid black;
 }
 
 .card-footer {
@@ -23,6 +34,11 @@ body {
 
 .card-img-top {
   border-radius: 0%;
+}
+
+.btn-danger {
+  margin: 5px;
+  width: 100px;
 }
 
 .Cat-footer {
