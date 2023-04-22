@@ -300,7 +300,7 @@ const cardsOnDom = (petArr) => {
       <p class="card-text">Special Skill: ${pet.specialSkill}</p>
     </div>
     <h5 class="card-footer ${pet.type}-footer">${pet.type}</h5>
-    <div class='delete-button'>
+    <div class='delete--button'>
     <button class='btn btn-danger' id='delete--${pet.id}'>Delete</button>
     </div>
   </div>
@@ -309,7 +309,52 @@ const cardsOnDom = (petArr) => {
   renderToDom("app", domString);
 };
 
-cardsOnDom(pets);
+//selected the form from the html
+let submitForm = document.querySelector(".pet-form");
+
+const createPet = (e) => {
+  e.preventDefault();
+
+  //creates a new pet object by grabbing the values of the individual html elements
+  const newPetObj = {
+    id: pets.length + 1,
+    name: document.querySelector("#petName").value,
+    color: document.querySelector("#petColor").value,
+    specialSkill: document.querySelector("#petSpecialSkill").value,
+    type: document.querySelector("#petType").value,
+    imageUrl: document.querySelector("#petImage").value,
+  };
+
+  //changes the first letter of the pet type to uppercase, so that the footer will display it as such
+  newPetObj.type = newPetObj.type.replace(
+    newPetObj.type[0],
+    newPetObj.type[0].toUpperCase()
+  );
+
+  //pushes our new object to the pets array
+  pets.push(newPetObj);
+  console.log(pets);
+
+  //we call cardsOnDom because the object has changed, but our HTML has not
+  cardsOnDom(pets);
+
+  //clears the form
+  submitForm.reset();
+};
+
+//creates an event listener for within the pet form, listening for a event of type 'submit'
+submitForm.addEventListener("submit", createPet);
+
+const app = document.querySelector("#app");
+
+app.addEventListener("click", (e) => {
+  const [, id] = e.target.id.split("--");
+  console.log(id);
+  const petIndex = pets.findIndex((pet) => pet.id === Number(id));
+  console.log(petIndex);
+  pets.splice(petIndex, 1);
+  cardsOnDom(pets);
+});
 
 const filter = (petArr, petType) => {
   const matchingPets = petArr.filter((pet) => pet.type === petType);
@@ -320,37 +365,6 @@ let catButton = document.getElementById("cat-button");
 let dogButton = document.getElementById("dog-button");
 let dinoButton = document.getElementById("dino-button");
 let showAllButton = document.getElementById("all-button");
-
-let submitForm = document.querySelector(".pet-form");
-
-const createPet = (e) => {
-  e.preventDefault();
-  const newPetObj = {
-    id: pets.length + 1,
-    name: document.querySelector("#petName").value,
-    color: document.querySelector("#petColor").value,
-    specialSkill: document.querySelector("#petSpecialSkill").value,
-    type: document.querySelector("#petType").value,
-    imageUrl: document.querySelector("#petImage").value,
-  };
-
-  newPetObj.type = newPetObj.type.replace(
-    newPetObj.type[0],
-    newPetObj.type[0].toUpperCase()
-  );
-  pets.push(newPetObj);
-  console.log(pets);
-
-  //we call cardsOnDom because the object has changed, but our HTML has not
-  cardsOnDom(pets);
-
-  //clears the form
-  // submitForm.reset();
-};
-
-const app = document.querySelector("#app");
-
-submitForm.addEventListener("submit", createPet);
 
 catButton.addEventListener("click", () => {
   const cats = filter(pets, "Cat");
@@ -370,3 +384,9 @@ dinoButton.addEventListener("click", () => {
 showAllButton.addEventListener("click", () => {
   cardsOnDom(pets);
 });
+
+const startApp = () => {
+  cardsOnDom(pets);
+};
+
+startApp();
