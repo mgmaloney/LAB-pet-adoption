@@ -321,9 +321,11 @@ const createPet = (e) => {
     name: document.querySelector("#petName").value,
     color: document.querySelector("#petColor").value,
     specialSkill: document.querySelector("#petSpecialSkill").value,
-    type: document.querySelector("#petType").value,
+    type: document.querySelector('input[name="type"]:checked').value,
     imageUrl: document.querySelector("#petImage").value,
   };
+
+  console.log(newPetObj);
 
   //changes the first letter of the pet type to uppercase, so that the footer will display it as such
   newPetObj.type = newPetObj.type.replace(
